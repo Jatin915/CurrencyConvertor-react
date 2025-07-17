@@ -1,13 +1,14 @@
 import { useState, useCallback } from 'react'
 import InputBox from './components/InputBox'
-
+import useMyHook from './customHooks/useMyHook'
+import CalculateBtn from './components/Button';
 
 function App() {
 
   const [fromSelection, setFromSelection] = useState("USD");
   const [toSelection, setToSelection] = useState("INR");
   const [amount, setAmount] = useState(1);
-
+  const [result, setResult] = useState("");
   
 
   return (
@@ -16,7 +17,9 @@ function App() {
 
         <InputBox label="From" selection={fromSelection} setSelection={setFromSelection} amount={amount} setAmount={setAmount}/>
 
-        <InputBox label="To" selection={toSelection} setSelection={setToSelection} />
+        <InputBox label="To" selection={toSelection} setSelection={setToSelection} displayAmount={result}/>
+
+        <CalculateBtn Result={result} setResult={setResult} fromSelection={fromSelection} toSelection={toSelection} amount={amount}/>
       </div>
     </>
   )
