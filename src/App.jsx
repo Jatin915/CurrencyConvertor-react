@@ -9,6 +9,15 @@ function App() {
   const [toSelection, setToSelection] = useState("INR");
   const [amount, setAmount] = useState(1);
   const [result, setResult] = useState("");
+
+
+  let memory = useMyHook(fromSelection, toSelection, amount);
+    
+    async function Convert(){
+        memory = await memory();
+        console.log(memory);
+        setResult(memory);
+    }
   
 
   return (
@@ -17,9 +26,9 @@ function App() {
 
         <InputBox label="From" selection={fromSelection} setSelection={setFromSelection} amount={amount} setAmount={setAmount}/>
 
-        <InputBox label="To" selection={toSelection} setSelection={setToSelection} displayAmount={result}/>
+        <InputBox label="To" selection={toSelection} setSelection={setToSelection} amount={result}/>
 
-        <CalculateBtn Result={result} setResult={setResult} fromSelection={fromSelection} toSelection={toSelection} amount={amount}/>
+        <CalculateBtn Click={Convert}/>
       </div>
     </>
   )

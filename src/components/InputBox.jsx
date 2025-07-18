@@ -1,16 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import { countryList } from './codes';
-import useMyHook from '../customHooks/useMyHook';
 
-function InputBox ({label, selection, setSelection, amount, setAmount, displayAmount}) {
-    
-
-    useEffect(() => {
-
-        // console.log(selection);
-        // console.log(selection);
-        // console.log(amount);
-    }, [selection, amount])
+function InputBox ({label, selection, setSelection, amount, setAmount}) {
 
 
     return (
@@ -28,10 +19,10 @@ function InputBox ({label, selection, setSelection, amount, setAmount, displayAm
                     className = {label === "To" ? '' : 'border-b-2 border-gray-400'}
                     placeholder={label === "To" ? "" : "Amount"} 
                     
-                    value={label === "To" ? displayAmount : amount}
+                    value={amount}
 
-                    disabled={label === "To"}
-                    onChange={(e) => setAmount(e.target.value)} />
+                    disabled={!setAmount}
+                    onChange={(setAmount) ? (e) => setAmount(e.target.value) : undefined} />
                     <select
                         name=""
                         id="" 
